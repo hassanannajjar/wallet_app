@@ -5,7 +5,7 @@ import 'package:wallet_app/main.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wallet_app/recent_activity.dart';
 
-final isExpandedProvider = StateProvider<bool>((ref) => false);
+final isExpandedProvider = StateProvider<bool>((ref) => true);
 final isShowRowCardsProvider = StateProvider<bool>((ref) => false);
 
 void whenPressWallet(WidgetRef ref, CardModel currentCardList) {
@@ -24,42 +24,42 @@ final transactionsProvider = Provider<List<Map<String, dynamic>>>(
   (ref) => [
     {
       'name': 'Kathryn Murphy',
-      'avatar': 'https://randomuser.me/api/portraits/women/1.jpg',
+      'avatar': 'https://randomuser.me/api/portraits/men/1.jpg',
       'datetime': '06 July 2025 12:55 PM',
       'amount': 928.41,
       'isCredit': false,
     },
     {
       'name': 'Albert Flores',
-      'avatar': 'https://randomuser.me/api/portraits/men/2.jpg',
+      'avatar': 'https://randomuser.me/api/portraits/men/19.jpg',
       'datetime': '05 July 2025 18:45 PM',
       'amount': 767.50,
       'isCredit': false,
     },
     {
       'name': 'Marvin McKinney',
-      'avatar': 'https://randomuser.me/api/portraits/men/3.jpg',
+      'avatar': 'https://randomuser.me/api/portraits/men/6.jpg',
       'datetime': '04 July 2025 15:33 PM',
       'amount': 169.43,
       'isCredit': true,
     },
     {
       'name': 'Eleanor Pena',
-      'avatar': 'https://randomuser.me/api/portraits/women/4.jpg',
+      'avatar': 'https://randomuser.me/api/portraits/men/22.jpg',
       'datetime': '03 July 2025 02:11 PM',
       'amount': 601.13,
       'isCredit': false,
     },
     {
       'name': 'Brooklyn Simmons',
-      'avatar': 'https://randomuser.me/api/portraits/women/7.jpg',
+      'avatar': 'https://randomuser.me/api/portraits/men/37.jpg',
       'datetime': '02 July 2025 10:32 PM',
       'amount': 275.43,
       'isCredit': false,
     },
     {
       'name': 'Darlene Robertson',
-      'avatar': 'https://randomuser.me/api/portraits/women/8.jpg',
+      'avatar': 'https://randomuser.me/api/portraits/men/68.jpg',
       'datetime': '02 July 2025 10:32 PM',
       'amount': 475.22,
       'isCredit': false,
@@ -73,19 +73,22 @@ final cardListProvider = StateProvider<List<CardModel>>(
       bank: 'Visa',
       number: '23-55-22 99812374',
       balance: 539.56,
-      color: Colors.green,
+      color: Color.fromARGB(255, 55, 255, 0),
+      linearColor: Color(0xFF00E676),
     ),
     CardModel(
       bank: 'MasterCard',
       number: '26-97-11 12345678',
       balance: 2334.56,
       color: Colors.red,
+      linearColor: Colors.redAccent,
     ),
     CardModel(
       bank: 'American Express',
       number: '12-34-56 98765432',
       balance: 14.56,
       color: Colors.cyan,
+      linearColor: Colors.blueAccent,
     ),
   ],
 );
@@ -308,7 +311,7 @@ Widget buildCard(CardModel cardData) {
       gradient: LinearGradient(
         colors: [
           cardData.color.withOpacity(0.85),
-          cardData.color.withOpacity(0.65),
+          cardData.linearColor.withOpacity(0.65),
         ],
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
@@ -380,11 +383,13 @@ class CardModel {
   final String number;
   final double balance;
   final Color color;
+  final Color linearColor;
 
   CardModel({
     required this.bank,
     required this.number,
     required this.balance,
     required this.color,
+    this.linearColor = Colors.green,
   });
 }
