@@ -1,6 +1,6 @@
 # Wallet App
 
-![Preview](./wallet_app.mp4)
+![Preview](wallet_app.gif)
 
 A sleek and interactive Flutter wallet application, designed to mimic real-world wallet UI and card interaction experience. Built with Riverpod for efficient state management, and customized animations for a smooth user interface.
 
